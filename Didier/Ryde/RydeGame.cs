@@ -14,7 +14,7 @@ namespace Didier
 
 			currentScene = new Scene();
 
-			Node asteroid = new Node("resources/asteroid.png");
+			Node asteroid = new Node("resources/rydecar.png");
 			asteroid.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 
 			currentScene.AddNode(asteroid);
