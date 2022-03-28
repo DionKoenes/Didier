@@ -1,23 +1,18 @@
 using System; // Console
-using System.Numerics; // Vector2
+using Raylib_cs; //RayDot
 
 namespace Didier
 {
 	class RydeGame
 	{
 		private Core core;
-		private Scene currentScene;
+		private RydeScene currentScene;
 
 		public RydeGame()
 		{
-			core = new Core("Ryde");
+			core = new Core("Ryde the Game");
 
-			currentScene = new Scene();
-
-			Node asteroid = new Node("resources/rydecar.png");
-			asteroid.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
-
-			currentScene.AddNode(asteroid);
+			currentScene = new RydeScene();
 		}
 
 		public void Play()
