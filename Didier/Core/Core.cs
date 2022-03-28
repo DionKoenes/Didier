@@ -29,7 +29,7 @@ namespace Didier
 
 			// draw the scene
 			Raylib.BeginDrawing();
-				Raylib.ClearBackground(Color.BLACK);
+				Raylib.ClearBackground(Color.GREEN);
 
 				// Update (and Draw) all nodes in the Scene
 				scene.UpdateNode(deltaTime);
