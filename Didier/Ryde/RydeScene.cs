@@ -19,8 +19,9 @@ namespace Didier
 			bike.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 			AddChild(bike);
 
-			background = new SpriteNode("resoruceajnkwbdakwjdbawkdjb");
-			
+			background = new SpriteNode("resources/achtergond.png");
+			background.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
+			AddChild(background);
 		}
 
 
