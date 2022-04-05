@@ -10,7 +10,7 @@ namespace Didier
 		//private SpaceShip player;
 		//private List<Bullet> bullets;
 		//private List<Asteroid> asteroids;
-		private SpriteNode bike;
+		private Bike bike;
 		private SpriteNode background;
 
 		public RydeScene() : base()
@@ -27,7 +27,7 @@ namespace Didier
 			background.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 			AddChild(background);
 
-			bike = new SpriteNode("resources/rydecar.png");
+			bike = new Bike("resources/rydecar.png");
 			bike.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 			AddChild(bike);
 		}
@@ -40,32 +40,56 @@ namespace Didier
 				Reload();
 				Console.WriteLine("Reloaded!!!");
 			}
-			// Player Rotate
-			if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
-			{
-				bike.RotateRight(deltaTime);
-			}
+			// Player Positioning
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
 			{
-				bike.RotateLeft(deltaTime);
+				bike.LeanLeft(deltaTime);
 			}
-			if (Raylib.IsKeyReleased(KeyboardKey.KEY_RIGHT))
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_RIGHT))
 			{
-				bike.StopRotating();
-			}
-			if (Raylib.IsKeyReleased(KeyboardKey.KEY_LEFT))
-			{
-				bike.StopRotating();
-			}
-			// Player Thrust
+				bike.LeanRight(deltaTime);
+            }
+            else
+            {
+				bike.Straight(deltaTime);
+            }
+
+			//player giving gas
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
-			{
-				bike.Thrust();
-			}
-			if (Raylib.IsKeyReleased(KeyboardKey.KEY_UP))
-			{
-				bike.NoThrust();
-			}
+            {
+				bike.Gas(deltaTime);
+            }
+            else
+            {
+				bike.Idle(deltaTime);
+            }
+			//anders sta rechtop wanneer geen button pressed. meer sprites leunen
+
+			/*if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
+            {
+                bike.RotateLeft(deltaTime);
+            }
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_RIGHT))
+            {
+                bike.StopRotating();
+            }
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_LEFT))
+            {
+                bike.StopRotating();
+            }
+            // Player Thrust
+            if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+                bike.Thrust();
+            }
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_UP))
+            {
+                bike.NoThrust();
+            }*/
+		}
+		public override void Update(float deltaTime)
+		{
+			HandleInput(deltaTime);
 		}
 	}
 }
