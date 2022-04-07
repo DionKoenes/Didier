@@ -11,6 +11,8 @@ namespace Didier
         private SpriteNode Forward;
         private SpriteNode Left;
         private SpriteNode Right;
+        private SpriteNode Brake;
+
         public Bike(string fn) : base(fn)
         {
 
@@ -34,7 +36,11 @@ namespace Didier
         }
         public void Gas(float deltaTime)
         {
-            Console.WriteLine("Gas");
+            Console.WriteLine("Accelerating");
+        }
+        public void Slow(float deltaTime)
+        {
+            Console.WriteLine("Braking");
         }
     }
 }

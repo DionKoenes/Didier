@@ -11,7 +11,7 @@ namespace Didier
 		//private List<Bullet> bullets;
 		//private List<Asteroid> asteroids;
 		private Bike bike;
-		private SpriteNode background;
+		private Background background;
 
 		public RydeScene() : base()
 		{
@@ -23,7 +23,7 @@ namespace Didier
 			Children.Clear();
 			State = State.Playing;
 
-			background = new SpriteNode("resources/achtergrond.png");
+			background = new Background("resources/achtergrond.png");
 			background.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 			AddChild(background);
 
@@ -54,15 +54,26 @@ namespace Didier
 				bike.Straight(deltaTime);
             }
 
-			//player giving gas
+			//player giving gas and braking
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
 				bike.Gas(deltaTime);
             }
-            else
-            {
+            else if (Raylib.IsKeyDown(KeyboardKey.KEY_DOWN))
+			{
+				bike.Slow(deltaTime);
+			}
+			else
+			{
 				bike.Idle(deltaTime);
+			}
+
+			//background moving
+			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+				background.Forward(deltaTime);
             }
+
 			//anders sta rechtop wanneer geen button pressed. meer sprites leunen
 
 			/*if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
