@@ -32,11 +32,13 @@ namespace Didier
         }
         public void Idle(float deltaTime)
         {
-            Console.WriteLine("Idling");
+            //Console.WriteLine("Idling");
+            TextureName = "resources/rydecar.png";
         }
         public void Gas(float deltaTime)
         {
-            Console.WriteLine("Accelerating");
+           //Console.WriteLine("Accelerating");
+            TextureName = "resources/rydecargas.png";
         }
         public void Slow(float deltaTime)
         {

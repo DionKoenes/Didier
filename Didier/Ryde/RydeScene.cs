@@ -41,6 +41,9 @@ namespace Didier
 				Console.WriteLine("Reloaded!!!");
 			}
 			// Player Positioning
+
+			bike.Idle(deltaTime);
+
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
 			{
 				bike.LeanLeft(deltaTime);
@@ -63,10 +66,7 @@ namespace Didier
 			{
 				bike.Slow(deltaTime);
 			}
-			else
-			{
-				bike.Idle(deltaTime);
-			}
+
 
 			//background moving
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
