@@ -4,7 +4,7 @@ using Raylib_cs; // Raylib
 
 namespace Didier
 {
-	class SpriteNode : Node, IDrawable
+	class SpriteNode : Node
 	{
 		// Sprite
 		private string textureName;

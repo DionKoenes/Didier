@@ -11,10 +11,12 @@ namespace Didier
 		//private List<Bullet> bullets;
 		//private List<Asteroid> asteroids;
 		private Bike bike;
-		private Background background;
+		// private Background background;
+		private List<Background> backgrounds;
 
 		public RydeScene() : base()
 		{
+			backgrounds = new List<Background>();
 			Reload();
 		}
 
@@ -23,13 +25,30 @@ namespace Didier
 			Children.Clear();
 			State = State.Playing;
 
-			background = new Background("resources/achtergrond.png");
-			background.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
-			AddChild(background);
+			backgrounds.Add(new Background("resources/achtergrond.png"));
+			backgrounds[0].Position = new Vector2((int)Settings.ScreenSize.X / 2, 0);
+			AddChild(backgrounds[0]);
+
+			backgrounds.Add(new Background("resources/achtergrond.png"));
+			backgrounds[1].Position = new Vector2((int)Settings.ScreenSize.X / 2, 720);
+			AddChild(backgrounds[1]);
 
 			bike = new Bike("resources/rydecar.png");
 			bike.Position = new Vector2((int)Settings.ScreenSize.X / 2, (int)Settings.ScreenSize.Y / 2);
 			AddChild(bike);
+		}
+
+		private void HandleBackGrounds(float deltaTime)
+		{
+			for (int i = 0; i < backgrounds.Count; i++)
+			{
+				backgrounds[i].ForwardSpeed(deltaTime);
+
+				if (backgrounds[i].Position.Y > 720 + 360)
+				{
+					backgrounds[i].Position.Y = -360;
+				}
+			}
 		}
 
 		private void HandleInput(float deltaTime)
@@ -41,9 +60,6 @@ namespace Didier
 				Console.WriteLine("Reloaded!!!");
 			}
 			// Player Positioning
-
-			bike.Idle(deltaTime);
-
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_LEFT))
 			{
 				bike.LeanLeft(deltaTime);
@@ -66,12 +82,15 @@ namespace Didier
 			{
 				bike.Slow(deltaTime);
 			}
-
+			else
+			{
+				bike.Idle(deltaTime);
+			}
 
 			//background moving
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-				background.ForwardSpeed(deltaTime);
+				HandleBackGrounds(deltaTime);
             }
 
 			//anders sta rechtop wanneer geen button pressed. meer sprites leunen
@@ -104,4 +123,3 @@ namespace Didier
 		}
 	}
 }
-

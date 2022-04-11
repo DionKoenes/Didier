@@ -3,36 +3,36 @@ using System.Numerics; // Vector2
 
 namespace Didier
 {
-	abstract class Node : ITransformable, IUpdatable
+	abstract class Node
 	{
 		// Data structure
-		private ITransformable parent;
-		private List<ITransformable> children;
-		public List<ITransformable> Children {
+		private Node parent;
+		private List<Node> children;
+		public List<Node> Children {
 			get { return children; }
 		}
-		public ITransformable Parent {
+		public Node Parent {
 			get { return parent; }
 			set { parent = value; }
 		}
 
 		// Transform
-		public Vector2 position;
+		public Vector2 Position;
 		public float rotation;
-		public Vector2 scale;
+		public Vector2 Scale;
 
-		public Vector2 Position {
-			get { return position; }
-			set { position = value; }
-		}
+		// public Vector2 Position {
+		// 	get { return position; }
+		// 	set { position = value; }
+		// }
 		public float Rotation {
 			get { return rotation; }
 			set { rotation = value; }
 		}
-		public Vector2 Scale {
-			get { return scale; }
-			set { scale = value; }
-		}
+		// public Vector2 Scale {
+		// 	get { return scale; }
+		// 	set { scale = value; }
+		// }
 
 		// TransformNode sets these values after transform.
 		private Vector2 worldPosition;
@@ -55,7 +55,7 @@ namespace Didier
 		// Constructor
 		protected Node()
 		{
-			this.children = new List<ITransformable>();
+			this.children = new List<Node>();
 			Parent = null;
 			Position = new Vector2(0.0f, 0.0f);
 			Rotation = 0.0f;
@@ -68,7 +68,7 @@ namespace Didier
 			// or don't, then this will be called
 		}
 
-		public bool AddChild(ITransformable child)
+		public bool AddChild(Node child)
 		{
 			if (children.Contains(child))
 			{
@@ -90,7 +90,7 @@ namespace Didier
 			return true;
 		}
 
-		public bool RemoveChild(ITransformable child, bool keepAlive = false)
+		public bool RemoveChild(Node child, bool keepAlive = false)
 		{
 			// we don't know this child
 			if (!children.Contains(child))
@@ -169,7 +169,7 @@ namespace Didier
 			Update(deltaTime);
 
 			// A Node is IUpdatable: update all children
-			List<ITransformable> children = Children;
+			List<Node> children = Children;
 			for (int i=0; i<children.Count; i++)
 			{
 				((Node)children[i]).UpdateNode(deltaTime);

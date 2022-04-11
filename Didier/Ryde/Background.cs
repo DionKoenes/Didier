@@ -28,7 +28,7 @@ namespace Didier
 		{
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-				position.Y += yspeed * deltaTime;
+				Position.Y += yspeed * deltaTime;
 			}
 
 			Console.WriteLine("Going FASTEERRRR!!!");

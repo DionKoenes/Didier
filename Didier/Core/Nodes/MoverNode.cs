@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace Didier
 {
-	abstract class MoverNode : SpriteNode, IMovable
+	abstract class MoverNode : SpriteNode
 	{
 		// Implementation of IMovable: Velocity, Acceleration, Mass
 		protected Vector2 velocity;
