@@ -7,15 +7,32 @@ namespace Didier
 {
 	class Background : MoverNode
 	{
+		private float yspeed;
 
 		public Background(string fn) : base(fn)
 		{
+			Position = new Vector2(640, 360);
 
+			Velocity = new Vector2(0.0f, 0.0f);
+			Acceleration = new Vector2(0.0f, 0.0f);
+			Mass = 1.0f;
+			yspeed = 500;
 		}
 
-		public void Forward(float deltaTime)
+		public void BackgroundPaste()
+        {
+
+        }
+
+		public void ForwardSpeed(float deltaTime)
 		{
-			Console.WriteLine("Moving FAST!!!");
+			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
+            {
+				position.Y += yspeed * deltaTime;
+			}
+
+			Console.WriteLine("Going FASTEERRRR!!!");
+
 		}
 	}
 }

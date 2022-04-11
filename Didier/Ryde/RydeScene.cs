@@ -71,7 +71,7 @@ namespace Didier
 			//background moving
 			if (Raylib.IsKeyDown(KeyboardKey.KEY_UP))
             {
-				background.Forward(deltaTime);
+				background.ForwardSpeed(deltaTime);
             }
 
 			//anders sta rechtop wanneer geen button pressed. meer sprites leunen

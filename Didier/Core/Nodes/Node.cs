@@ -17,9 +17,9 @@ namespace Didier
 		}
 
 		// Transform
-		protected Vector2 position;
-		protected float rotation;
-		protected Vector2 scale;
+		public Vector2 position;
+		public float rotation;
+		public Vector2 scale;
 
 		public Vector2 Position {
 			get { return position; }
